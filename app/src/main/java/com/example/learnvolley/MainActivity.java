@@ -3,6 +3,9 @@ package com.example.learnvolley;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -17,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     RequestQueue queue;
     String url;
+    TextView tmp;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,29 +30,32 @@ public class MainActivity extends AppCompatActivity {
 
         // Init
         // Instantiate the RequestQueue.
+        tmp = findViewById(R.id.editTextUrl);
         textView = (TextView) findViewById(R.id.textView);
         queue = Volley.newRequestQueue(this);
-        url ="URL OF DATA="; // URL OF DATA
+        button = findViewById(R.id.button);
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                            textView.setText(response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                  /*      textView.setText("That didn't work!");*/
-                    }
-                }
-        );
+        button.setOnClickListener( (View view) -> {
 
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+                url = tmp.getText().toString(); // URL OF DATA
+                // Request a string response from the provided URL.
+                StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                textView.setText(response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                textView.setText("This URL doesn't exist!");
+                            }
+                        }
+                );
 
+                // Add the request to the RequestQueue.
+                queue.add(stringRequest);
+        });
     }
 }
