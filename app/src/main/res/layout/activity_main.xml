@@ -19,7 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <EditText
-        android:id="@+id/editTextUrl"
+        android:id="@+id/editTextURL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#939393"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/cardview_dark_background"
         android:text="search url"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUrl"
+        app:layout_constraintTop_toBottomOf="@+id/editTextURL"
         tools:layout_editor_absoluteX="131dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
