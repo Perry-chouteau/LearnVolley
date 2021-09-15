@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Init
         // Instantiate the RequestQueue.
-        tmp = findViewById(R.id.editTextURL);
+        tmp = findViewById(R.id.editText);
         textView = (TextView) findViewById(R.id.textView);
         queue = Volley.newRequestQueue(this);
         button = findViewById(R.id.button);
