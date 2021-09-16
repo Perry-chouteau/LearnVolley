@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">LearnVolley</string>
-    <string name="dataInURL">Data in URL</string>
-    <string name="writeYourURL">Write Your URL</string>
-    <string name="searchUrl">search url</string>
+
+    <string name="editTextHint">Your URL:</string>
+    <string name="buttonText">Button</string>
+
+    <string name="textViewHint">data of the URL above:</string>
+    <string name="textViewBadUrl_p1">This url: \'</string>
+    <string name="textViewBadUrl_p2">\' didn\'t work!</string>
+    <string name="textViewNoUrl">Write the url of your data above.</string>
 </resources>
