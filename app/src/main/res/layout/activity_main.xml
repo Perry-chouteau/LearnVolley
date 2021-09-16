@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent" android:layout_gravity=""
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:gravity="clip_horizontal"
         android:hint="@string/textViewHint"
         android:paddingStart="5dp"
         android:paddingTop="5dp"
@@ -37,6 +38,7 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="@string/editTextHint"
+        android:autofillHints="@string/editTextHint"
         android:inputType="textPersonName"
         android:paddingStart="25dp"
         android:paddingTop="10dp"

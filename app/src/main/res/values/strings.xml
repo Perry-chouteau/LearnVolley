@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LearnVolley</string>
+    <string name="app_name">LearnVolleyGet</string>
 
     <string name="editTextHint">Your URL:</string>
     <string name="buttonText">Button</string>
