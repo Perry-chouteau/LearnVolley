@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         button.setOnClickListener( (View view) -> {
             url = tmp.getText().toString();
-            textView.setTextSize(8);
+            textView.setTextSize(10);
             // Request a string response from the provided URL.
             StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
                 new Response.Listener<String>() {
