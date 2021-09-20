@@ -1,10 +1,10 @@
-package com.example.learnvolleyget;
+package com.example.learnvolley;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.res.ResourcesCompat;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +15,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         button.setOnClickListener( (View view) -> {
             url = tmp.getText().toString();
+            textView.setTextSize(8);
             // Request a string response from the provided URL.
             StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -47,7 +52,35 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display characters of the response string.
                         textView.setHint(getText(R.string.textViewHint));
-                        textView.setText(response);
+                        if (response.charAt(0) == '[') { // It's a jsonArray ?
+                            Log.d("TYPE", "It's a jsonArray !");
+                            try {
+                                // translate string to JsonArray & get each jsonObject & put it in a textView
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = 0; i < jsonArray.length(); ++i) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    if (i == 0)
+                                        textView.setText(jsonObject.toString());
+                                    else
+                                        textView.setText(textView.getText() + "\n\n" + jsonObject.toString());
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else if (response.charAt(0) == '{') { // It's a jsonObject ?
+                            Log.d("TYPE", "It's a jsonObject !");
+                            // translate string to JsonObject & put it in a textView
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                textView.setText(jsonObject.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else { // It's a string !
+                            Log.d("TYPE", "It's a String !");
+                            // no translation & put it in a textView.
+                            textView.setText(response);
+                        }
                     }
                 }, new Response.ErrorListener() {
                     @Override
